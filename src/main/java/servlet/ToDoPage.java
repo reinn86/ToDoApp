@@ -123,7 +123,7 @@ public class ToDoPage extends HttpServlet {
 				+ "<form action=\"\" method=\"post\">"
 				+ "<li class=index"+i+">"
 //				+ modifyHtml
-				+ "<p class=\"contents\" style=\"display:inline;\">" + contents + " </div>"
+				+ "<p id=\"process\" style=\"display:inline;\">" + contents + " </p>"
 				+ "<small>" + term + " </small>"
 				+ "<input type=\"submit\" value=\"完了\" name=\"COMPLETE\">"
 				+ "<input type=\"submit\" value=\"削除\" name=\"DELETE\">"
