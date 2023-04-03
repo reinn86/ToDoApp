@@ -24,6 +24,8 @@
    		<%= request.getAttribute("task") %>
    	</ul>
    	
+   	<p>タスクの内容を変更するには内容の部分をクリックしてください</p>
+   	
     <a href="./login">戻る</a>
     <script src="./assets/js/main.js"></script>
 </body>
