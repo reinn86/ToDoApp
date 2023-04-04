@@ -121,13 +121,11 @@ public class ToDoController extends HttpServlet {
 			
 			taskListHtml = taskListHtml 
 				+ "<li class=index"+i+">"
-//				+ modifyHtml
 				+ "<form action=\"\" method=\"post\">"
 				+ "<p id=\"process\" style=\"display:inline;\">" + contents + " </p>"
 				+ "<small>" + term + " </small>"
 				+ "<input type=\"submit\" value=\"完了\" name=\"COMPLETE\">"
 				+ "<input type=\"submit\" value=\"削除\" name=\"DELETE\">"
-//				+ "<input type=\"submit\" value=\"修正\" name =\"MODIFICATION\">"
 				+ "<input type=\"hidden\" value=\"" + i + "\" name=\"index\">"
 				+ "</form>"
 				+ "</li>";
