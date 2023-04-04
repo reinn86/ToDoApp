@@ -10,6 +10,7 @@
 	<h1>ようこそ</h1>
 	<form action="" method="post">
 		<label for="name">名前を入力してください</label>
+		test
 		<br>
 		<input type="text" name="name" id="name">
 		<input type="submit" value="送信">
