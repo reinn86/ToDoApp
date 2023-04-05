@@ -20,9 +20,7 @@
 		</p>
 	</form>
 	
-	<ul>
-   		<%= request.getAttribute("task") %>
-   	</ul>
+   	<%= request.getAttribute("task") %>
    	
    	<p>タスクの内容を変更するには内容の部分をクリックしてください</p>
    	

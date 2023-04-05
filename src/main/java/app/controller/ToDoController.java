@@ -17,6 +17,7 @@ import domain.model.User;
 import domain.repository.ConnectDB;
 import domain.repository.TaskDAO;
 import domain.service.mytodo.TaskInputLogic;
+import domain.service.mytodo.TaskListHtml;
 
 /**
  * Servlet implementation class ToDoPage
@@ -50,7 +51,6 @@ public class ToDoController extends HttpServlet {
 		//ユーザー
 		User user = (User)session.getAttribute("user");
 		List<Task> tasks = taskDAO.getTaskList(user.getUserName());
-//		List<Task> tasks = user.getTasks();
 		
 		//ページ設定
 		response.setCharacterEncoding("UTF-8");
@@ -100,40 +100,10 @@ public class ToDoController extends HttpServlet {
 				}
 			}
 		}
-		
 		//タスクをhtmlに出力する
-		String taskListHtml = "";
-		
-		//TODO 日付が近い順	並べ替える
-		for(int i = 0; i < tasks.size(); i++) {
-			String contents = tasks.get(i).getContents();
-			String term = tasks.get(i).getTerm();
-			
-			if(term == null) {
-				term = "";
-			}
-			// TODO 完了されているタスクに関しては削除以外のボタンを表示しないようにする
-//			String modifyHtml = "<input type=\"text\" value=\"" + contents + "\" name =\"MODIFICATION\">";
-			
-			if(tasks.get(i).isComplete()) {
-				contents = "<s>" + contents + "</s>";
-			}
-			
-			taskListHtml = taskListHtml 
-				+ "<li class=index"+i+">"
-//				+ modifyHtml
-				+ "<form action=\"\" method=\"post\">"
-				+ "<p id=\"process\" style=\"display:inline;\">" + contents + " </p>"
-				+ "<small>" + term + " </small>"
-				+ "<input type=\"submit\" value=\"完了\" name=\"COMPLETE\">"
-				+ "<input type=\"submit\" value=\"削除\" name=\"DELETE\">"
-//				+ "<input type=\"submit\" value=\"修正\" name =\"MODIFICATION\">"
-				+ "<input type=\"hidden\" value=\"" + i + "\" name=\"index\">"
-				+ "</form>"
-				+ "</li>";
-		}
-		//ページ切り替え
+		String taskListHtml = new TaskListHtml().createHtml(tasks);
 		request.setAttribute("task",taskListHtml);
+		//ページ切り替え
 		String toDoPage = "/WEB-INF/views/mytodo/MyToDo.jsp";
 		RequestDispatcher dispatch = request.getRequestDispatcher(toDoPage);
 		dispatch.forward(request, response);
