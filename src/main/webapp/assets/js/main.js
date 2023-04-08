@@ -16,5 +16,5 @@ function process(name) {
 for(let i = 0; i < 7; i++) {
 	let button = document.getElementById('tasklist-contents' + i);
 	button.addEventListener('click', process('tasklist-contents' + i));
-//	console.log('tasklist-contents' + i);
+	console.log('tasklist-contents' + i);
 }
