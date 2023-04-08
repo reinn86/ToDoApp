@@ -4,9 +4,7 @@ import java.util.List;
 
 import domain.model.Task;
 
-public class TaskListHtml {
-	String id= "process";
-	
+public class TaskListHtml {	
 	public String createHtml(List<Task> tasks) {
 		StringBuilder html = new StringBuilder();
 		
@@ -19,10 +17,8 @@ public class TaskListHtml {
 			
 			html.append("<li>");
 			html.append("<form action=\"\" method=\"post\">");
-			html.append("<p id=\"" + id + "\" style=\"display:inline;\">");
-			html.append(createContents(conetents, isComplete));
+			html.append(createContents(conetents, isComplete,i));
 			html.append(createTerm(term));
-			html.append("</p> ");
 			if(!isComplete) {
 				html.append(createInput("submit", "完了", "COMPLETE"));
 			}
@@ -48,27 +44,27 @@ public class TaskListHtml {
 		return html.toString();
 	}
 	
-	private String createContents(String contents, boolean isComplete) {
-		String html;
+	private String createContents(String contents, boolean isComplete,int index) {
+		StringBuilder html = new StringBuilder();
 		
+		html.append("<div id=\"tasklist-contents" + index +"\" style=\"display:inline;\">");
 		if(!isComplete) {
-			html = contents;
+			html.append(contents);
 		} else {
-			html = "<s>" + contents + "</s>";
+			html.append("<s>" + contents + "</s>");
 		}
-		
-		return html;
+		html.append("</div>");
+		return html.toString();
 	}
 	
 	private String createTerm(String term) {
-		String html;
-		
+		StringBuilder html = new StringBuilder();
+		html.append("<div id=\"tasklist-term\" style=\"display:inline;\">");
 		if(term != null) {
-			html = " <small>" + term + "</small>";
-		} else {
-			html = " ";
+			html.append("<small>" + term + "</small>");
 		}
+		html.append("</div>");
 		
-		return html;
+		return html.toString();
 	}
 }
