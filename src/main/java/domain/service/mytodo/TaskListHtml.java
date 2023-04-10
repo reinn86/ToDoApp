@@ -8,7 +8,7 @@ public class TaskListHtml {
 	public String createHtml(List<Task> tasks) {
 		StringBuilder html = new StringBuilder();
 		
-		html.append("<ul>");
+		html.append("<ul id=\"task_list\">");
 		
 		for(int i = 0; i < tasks.size(); i++) {
 			String conetents = tasks.get(i).getContents();
@@ -17,13 +17,13 @@ public class TaskListHtml {
 			
 			html.append("<li>");
 			html.append("<form action=\"\" method=\"post\">");
-			html.append(createContents(conetents, isComplete,i));
+			html.append(createContents(conetents, isComplete));
 			html.append(createTerm(term));
 			if(!isComplete) {
-				html.append(createInput("submit", "完了", "COMPLETE"));
+				html.append(createInput("submit","submit", "完了", "COMPLETE"));
 			}
-			html.append(createInput("submit", "削除", "DELETE"));
-			html.append(createInput("hidden", String.valueOf(i) , "index"));
+			html.append(createInput("delete","submit", "削除", "DELETE"));
+			html.append(createInput("index","hidden", String.valueOf(i) , "index"));
 			html.append("</form>");
 			html.append("</li>");
 		}
@@ -32,10 +32,11 @@ public class TaskListHtml {
 		return html.toString();
 	}
 	
-	private String createInput(String type,String value,String name) {
+	private String createInput(String id,String type,String value,String name) {
 		StringBuilder html = new StringBuilder();
 		
 		html.append("<input ");
+		html.append("id=\""+ id + "\"");
 		html.append("type=\"" + type + "\"");
 		html.append("value=\"" + value + "\"");
 		html.append("name=\"" + name + "\"");
@@ -44,10 +45,10 @@ public class TaskListHtml {
 		return html.toString();
 	}
 	
-	private String createContents(String contents, boolean isComplete,int index) {
+	private String createContents(String contents, boolean isComplete) {
 		StringBuilder html = new StringBuilder();
 		
-		html.append("<div id=\"tasklist-contents" + index +"\" style=\"display:inline;\">");
+		html.append("<div id=\"tasklist-contents\" style=\"display:inline;\">");
 		if(!isComplete) {
 			html.append(contents);
 		} else {

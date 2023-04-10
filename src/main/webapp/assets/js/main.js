@@ -1,20 +1,27 @@
 'use strict';
 
 //TODO sqlがクローズされてるから接続できるようにする
-//TODO クリック時の処理が常時発動している？（調査中）
 
-function process(name) {
-//	let index = document.getElementsByName(name);
-	let contentsText = document.getElementById(name).textContent;
+function modifyTask(mouseEvent) {
+//	if(this.getElementById('tasklist-contents')) {
+		let contentsText = mouseEvent.target.textContent;
+		let content = mouseEvent.target.getAttribute('tasklist-contents');
 
-	document.getElementById(name)
-		.innerHTML = '<input type=\"text\"' 
+		console.log(content);
+		this.innerHTML = '<input type=\"text\"' 
 		+ 'value=\"' +contentsText + '\"' 
-		+ '\" name=\"MODIFICATION\"></input>';
-}
+		+ 'name=\"MODIFICATION\"></input>'
+		+ '<input type=\"submit\"' 
+		+ 'value=\"修正\"'
+		+ 'name=\"MODIFICATION\"></input>'
+		+ '<input type=\"submit\"' 
+		+ 'value=\"取消\"></input>';
+	}
+//}
 
-for(let i = 0; i < 7; i++) {
-	let button = document.getElementById('tasklist-contents' + i);
-	button.addEventListener('click', process('tasklist-contents' + i));
-	console.log('tasklist-contents' + i);
+let button = document.querySelector('#task_list').children;
+
+for(let i = 0; i < button.length; i++) {
+	button[i].addEventListener('click',modifyTask);
+	console.log(button[i]);
 }
