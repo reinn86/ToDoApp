@@ -7,24 +7,22 @@ let flag = new Array(button.length); //タスクがクリックされている�
 
 for(let i = 0; i < button.length; i++) {	
 	flag[i] = false;
-	button[i].addEventListener('click',function() {
+	document.getElementById('tasklist-contents' + i).addEventListener('click',function() {
 		if(!flag[i]) {
-			let contentsText = document.getElementById('tasklist-contents').innerText;
-			
+			let contentsText = document.getElementById('tasklist-contents' + i).innerText;
 			
 			console.log(contentsText);
 			flag[i] = true;
 			document.getElementsByClassName('tasklist-contents')[i].innerHTML 
 			= '<form action=\"\"' + ' method=\"post\">'
 			+ '<input type=\"text\"' 
-			+ 'value=\"' +contentsText + '\"' 
+			+ 'value=\"' + contentsText + '\"' 
 			+ 'name=\"MODIFICATION\"></input>'
 			+ '<input type=\"submit\"' 
 			+ 'value=\"修正\"'
 			+ 'name=\"MODIFICATION\"></input>'
-			+ '<input type=\"submit\"' 
-			+ 'value=\"取消\"></input>'
-			+ '<input type=\"hidden\" value=\"' + i + '\"name=\"index\">'
+			+ '<input type=\"submit\" value=\"取消\"></input>'
+			+ '<input type=\"hidden\" value=\"' + i + '\"name=\"index\"></input>'
 			+ '</form>';
 		}
 	});
