@@ -96,6 +96,7 @@ public class ToDoController extends HttpServlet {
 				case "MODIFICATION" -> {
 					String contents = request.getParameter("MODIFICATION");
 					int index = Integer.parseInt(request.getParameter("index"));
+					tasks.get(index).setContents(contents);
 					taskDAO.modificationTask(contents, tasks.get(index).getId());
 				}
 			}

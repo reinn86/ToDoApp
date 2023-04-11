@@ -15,8 +15,8 @@ public class TaskListHtml {
 			String term = tasks.get(i).getTerm();
 			boolean isComplete = tasks.get(i).isComplete();
 			
-			html.append("<li>");
-			html.append("<form action=\"\" method=\"post\">");
+			html.append("<li class=\"tasklist-contents\">");
+			html.append("<form id=\"tasks" + i + "\" action=\"\" method=\"post\">");
 			html.append(createContents(conetents, isComplete));
 			html.append(createTerm(term));
 			if(!isComplete) {
