@@ -78,7 +78,6 @@ public class TaskDAO {
 		return false;
 	}
 	
-	//TODO 無駄に名前とってきてるから削除する
 	public boolean completeTask(String name,int id) {
 		String sql = "UPDATE tasks SET is_completed = true "
 				+ "WHERE user_id = (SELECT id from users where name = ?) "

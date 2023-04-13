@@ -17,7 +17,7 @@ public class TaskListHtml {
 			
 			html.append("<li class=\"tasklist-contents\">");
 			html.append("<form id=\"tasks" + i + "\" action=\"\" method=\"post\">");
-			html.append(createContents(conetents, isComplete));
+			html.append(createContents(conetents, isComplete,i));
 			html.append(createTerm(term));
 			if(!isComplete) {
 				html.append(createInput("submit","submit", "完了", "COMPLETE"));
@@ -45,10 +45,10 @@ public class TaskListHtml {
 		return html.toString();
 	}
 	
-	private String createContents(String contents, boolean isComplete) {
+	private String createContents(String contents, boolean isComplete,int index) {
 		StringBuilder html = new StringBuilder();
 		
-		html.append("<div id=\"tasklist-contents\" style=\"display:inline;\">");
+		html.append("<div id=\"tasklist-contents" + index + "\" style=\"display:inline;\">");
 		if(!isComplete) {
 			html.append(contents);
 		} else {

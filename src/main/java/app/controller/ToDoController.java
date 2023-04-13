@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import app.security.HtmlFilter;
 import domain.model.Task;
 import domain.model.User;
 import domain.repository.ConnectDB;
@@ -52,6 +53,8 @@ public class ToDoController extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		List<Task> tasks = taskDAO.getTaskList(user.getUserName());
 		
+		HtmlFilter htmlFilter = new HtmlFilter();
+		
 		//ページ設定
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; UTF-8");
@@ -62,7 +65,7 @@ public class ToDoController extends HttpServlet {
 
 			switch(paramName) {
 				case "APPEND" -> {
-					String contents = request.getParameter("contents");
+					String contents = htmlFilter.inputHtmlFilter(request.getParameter("contents"));
 					String term = request.getParameter("term");
 					
 					if(taskInputLogic.excute(contents)) {
@@ -92,10 +95,9 @@ public class ToDoController extends HttpServlet {
 					taskDAO.deleteTask(user.getUserName(),tasks.get(index).getId());
 					tasks.remove(index);
 				}
-				// TODO 修正ボタン実装
 				case "MODIFICATION" -> {
-					String contents = request.getParameter("MODIFICATION");
 					int index = Integer.parseInt(request.getParameter("index"));
+					String contents = request.getParameter("MODIFICATION");
 					tasks.get(index).setContents(contents);
 					taskDAO.modificationTask(contents, tasks.get(index).getId());
 				}
