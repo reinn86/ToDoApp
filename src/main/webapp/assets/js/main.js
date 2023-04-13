@@ -18,7 +18,6 @@ for(let i = 0; i < taskListHtml.length; i++) {
 			+ '<input type=\"submit\"' 
 			+ 'value=\"修正\"'
 			+ 'name=\"MODIFICATION\"></input>'
-			+ '<input type=\"submit\" value=\"取消\"></input>'
 			+ '<input type=\"hidden\" value=\"' + i + '\"name=\"index\"></input>'
 			+ '</form>';
 		}

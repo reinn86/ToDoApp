@@ -53,6 +53,7 @@ public class ToDoController extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		List<Task> tasks = taskDAO.getTaskList(user.getUserName());
 		
+		//TODO sqlの入力されるとバグる
 		HtmlFilter htmlFilter = new HtmlFilter();
 		
 		//ページ設定
