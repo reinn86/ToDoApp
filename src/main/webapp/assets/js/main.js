@@ -1,18 +1,15 @@
 'use strict';
 
-//TODO sqlがクローズされてるから接続できるようにする
+let taskListHtml = document.querySelector('#task_list').children;
+let isClickArray = new Array(taskListHtml.length); //タスクがクリックされているかのフラグ
 
-let button = document.querySelector('#task_list').children;
-let flag = new Array(button.length); //タスクがクリックされているかのフラグ
-
-for(let i = 0; i < button.length; i++) {	
-	flag[i] = false;
+for(let i = 0; i < taskListHtml.length; i++) {	
+	isClickArray[i] = false;
 	document.getElementById('tasklist-contents' + i).addEventListener('click',function() {
-		if(!flag[i]) {
+		if(!isClickArray[i]) {
 			let contentsText = document.getElementById('tasklist-contents' + i).innerText;
 			
-			console.log(contentsText);
-			flag[i] = true;
+			isClickArray[i] = true;
 			document.getElementsByClassName('tasklist-contents')[i].innerHTML 
 			= '<form action=\"\"' + ' method=\"post\">'
 			+ '<input type=\"text\"' 

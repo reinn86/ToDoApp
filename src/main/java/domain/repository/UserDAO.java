@@ -27,8 +27,6 @@ public class UserDAO {
 			}
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();
-		} finally {
-			close();
 		}
 		return false;
 	}
@@ -42,8 +40,6 @@ public class UserDAO {
 			return true;
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();
-		} finally {
-			close();
 		}
 		return false;
 	}
@@ -61,13 +57,11 @@ public class UserDAO {
 			}
 		} catch(SQLException sqle) {
 			sqle.printStackTrace();
-		} finally {
-			close();
 		}
 		return false;
 	}
 	
-	private void close() {
+	public void close() {
 		try {
 			if(cn != null) {
 				cn.close();
