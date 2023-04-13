@@ -27,3 +27,6 @@ sql　local
   id Int
   
   name VARCHAR(45)
+ 
+ ##アプリについて
+ 
