@@ -8,6 +8,7 @@
 <title>エラーページ</title>
 </head>
 <body>
-	<a href="./login/login">戻る</a>
+	<p>エラーページですログイン画面に戻ってください</p>
+	<a href="./login">戻る</a>
 </body>
 </html>

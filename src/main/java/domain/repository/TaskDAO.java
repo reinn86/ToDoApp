@@ -9,8 +9,6 @@ import java.util.List;
 
 import domain.model.Task;
 
-
-//TODO extendsにする。
 public class TaskDAO {
 	private Connection cn = null;
 	private PreparedStatement pstmt = null;

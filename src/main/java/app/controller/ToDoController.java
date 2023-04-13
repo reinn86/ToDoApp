@@ -39,18 +39,20 @@ public class ToDoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO 直接このページに飛んで来たときに警告のページを表示
-		//TODO 同じセッション中は何回もデータベースからとってこないようにしたい
-		//TODO セッション切れの時ログインページに戻る
 		//通信
 		HttpSession session = request.getSession();
 		Enumeration<String> parameterNames = request.getParameterNames();
-		
 		ConnectDB connectDB = new ConnectDB();
 		TaskDAO taskDAO = new TaskDAO(connectDB.getConnection());
 		
 		//ユーザー
 		User user = (User)session.getAttribute("user");
+		//FIXME 書き方がきれいじゃない
+		if(user == null) {
+			String errorPage = "/WEB-INF/views/error.jsp";
+			RequestDispatcher dispatch = request.getRequestDispatcher(errorPage);
+			dispatch.forward(request, response);
+		}
 		List<Task> tasks = taskDAO.getTaskList(user.getUserName());
 		
 		//TODO sqlの入力されるとバグる

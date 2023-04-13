@@ -47,6 +47,7 @@ public class LoginController extends HttpServlet {
 		
 		HtmlFilter htmlFilter = new HtmlFilter();
 		userName = htmlFilter.inputHtmlFilter(userName);
+
 		//ログイン処理
 		if(loginLogic.excute(userName)) {
 			User user = new User();
@@ -64,9 +65,7 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("user", user);
 			response.sendRedirect(toDoServ);
 		}
-		else {
-			// TODO 注意画面の表示
-			
+		else {			
 			RequestDispatcher dispatch = request.getRequestDispatcher(loginPage);
 			dispatch.forward(request, response);
 		}
