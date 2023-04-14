@@ -54,8 +54,6 @@ public class ToDoController extends HttpServlet {
 			dispatch.forward(request, response);
 		}
 		List<Task> tasks = taskDAO.getTaskList(user.getUserName());
-		
-		//TODO sqlの入力されるとバグる
 		HtmlFilter htmlFilter = new HtmlFilter();
 		
 		//ページ設定
@@ -101,8 +99,8 @@ public class ToDoController extends HttpServlet {
 				case "MODIFICATION" -> {
 					int index = Integer.parseInt(request.getParameter("index"));
 					String contents = request.getParameter("MODIFICATION");
-					tasks.get(index).setContents(contents);
 					taskDAO.modificationTask(contents, tasks.get(index).getId());
+					tasks.get(index).setContents(contents);
 				}
 			}
 		}
